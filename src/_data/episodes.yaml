@@ -1,0 +1,184 @@
+# Odcinki serii. Jeden wpis na odcinek, pola dla każdego języka.
+# Brak klucza języka (np. brak "en") = odcinka nie ma w tym języku i nigdzie się nie pokazuje.
+#
+# Pola wersji językowej:
+#   title    tytuł jak na platformach, bez emoji i dopisków
+#   summary  kogo Kajo spotyka, cecha tego zwierzęcia i lekcja odcinka (1-2 zdania)
+#   duration czas z Apple Podcasts (mm:ss); strona zaokrągla do pełnych minut
+#   youtube  ID filmu (to, co jest po watch?v=)
+#   spotify  ID odcinka (to, co jest po open.spotify.com/episode/)
+#   apple    numer odcinka w Apple Podcasts (to, co jest po ?i=)
+#   cover    okładka kwadratowa, WebP 720 px
+#
+# Stan danych: ID YouTube sprawdzone 31.10.2026 przez oEmbed YouTube (każdy film na właściwym kanale),
+# Spotify odczytane 31.10.2026 ze stron pokazów, Apple i czasy z API Apple 31.10.2026.
+
+- number: 1
+  pl:
+    title: "Kajo i Wieloryb Hugo"
+    summary: "Wieloryb Hugo mieszka wszędzie, bo całe morze jest jego domem. Kiedy Kajo go poznaje, Hugo otwiera mu oczy na to, co czeka za horyzontem, i zachęca go do podróży."
+    duration: "21:13"
+    youtube: "BbRc8RFGz1c"
+    spotify: "4zBXe6zXNRkEzCLnMnUI75"
+    apple: "1000785550421"
+    cover: "/img/covers/s01e01_pl.webp"
+  en:
+    title: "Kayo and Hugo the Whale"
+    summary: "Hugo the whale calls the whole sea home. When Kayo meets him, Hugo opens the little penguin's eyes to the wide world beyond the horizon and encourages him to explore it."
+    duration: "20:35"
+    youtube: "wU6vhr_HLGk"
+    spotify: "5Hkgd4kN8R0uI6eFBOpOb2"
+    apple: "1000785332616"
+    cover: "/img/covers/s01e01_en.webp"
+  es:
+    title: "Kaio y la Ballena Hugo"
+    summary: "La ballena Hugo vive en todas partes: todo el mar es su hogar. Cuando Kaio lo conoce, Hugo le abre los ojos a lo que hay más allá del horizonte y lo anima a viajar."
+    duration: "20:35"
+    youtube: "0l7nLyALaYg"
+    spotify: "1jUdAa5wPxBeHxaCL0IBP3"
+    apple: "1000785333219"
+    cover: "/img/covers/s01e01_es.webp"
+  hi:
+    title: "कायो और व्हेल हूगो"
+    summary: "व्हेल हूगो के लिए पूरा समुद्र ही घर है। उससे मिलकर कायो को पता चलता है कि क्षितिज के उस पार एक विशाल दुनिया है। हूगो उसके मन में उस दुनिया को देखने और सफ़र पर निकलने की चाह जगाता है।"
+    duration: "20:39"
+    youtube: "3bqGh-ShqI0"
+    spotify: "0YdRW1nXjdHWwEb08QjK6w"
+    apple: "1000785333060"
+    cover: "/img/covers/s01e01_hi.webp"
+
+- number: 2
+  pl:
+    title: "Kajo i Słoń Ed"
+    summary: "W indyjskiej dżungli Kajo poznaje słonia Eda, który nigdy nie zapomina. Ratuje małego słonika przed pytonem i odkrywa, że wszystko na świecie jest ze sobą połączone."
+    duration: "18:18"
+    youtube: "-aoI7_J_lMg"
+    spotify: "5odrbLLbb80jP3dsBS53zM"
+    apple: "1000785550562"
+    cover: "/img/covers/s01e02_pl.webp"
+  en:
+    title: "Kayo and Ed the Elephant"
+    summary: "In the Indian jungle, Kayo meets Ed, an elephant who never forgets. Kayo saves a baby elephant from a python and discovers that everything in the world is connected."
+    duration: "16:28"
+    youtube: "C7pecgBCwSU"
+    spotify: "63lvjV5xFmbluivzm6r8Ao"
+    apple: "1000785332541"
+    cover: "/img/covers/s01e02_en.webp"
+  es:
+    title: "Kaio y el Elefante Ed"
+    summary: "En la selva de la India, Kaio conoce a Ed, el elefante que nunca olvida. Kaio salva a un elefantito de una pitón y descubre que todo en el mundo está conectado."
+    duration: "16:29"
+    youtube: "m8Ud6QGqBpg"
+    spotify: "1963FRAbjOjrseJ9UtPGQl"
+    apple: "1000785333085"
+    cover: "/img/covers/s01e02_es.webp"
+  hi:
+    title: "कायो और हाथी एड"
+    summary: "भारत के जंगल में कायो हाथी एड से मिलता है, जो कभी नहीं भूलता। कायो हाथी के एक बच्चे को अजगर से बचाता है और समझता है कि हर चीज़ आपस में जुड़ी हुई है।"
+    duration: "16:35"
+    youtube: "Lj14PBwrYdw"
+    spotify: "7JUbFUx63QZVMKojjPGwPg"
+    apple: "1000785333061"
+    cover: "/img/covers/s01e02_hi.webp"
+
+- number: 3
+  pl:
+    title: "Kajo i Żyrafa Zuza"
+    summary: "Na afrykańskiej sawannie Kajo poznaje żyrafę Zuzę, która widzi dalej niż ktokolwiek. Od niej uczy się, że każdy ma swoje \"w sam raz\"."
+    duration: "19:03"
+    youtube: "IaW9SSf9rD8"
+    spotify: "16CTl4r6n0uYVZCSAUT7Kp"
+    apple: "1000785550479"
+    cover: "/img/covers/s01e03_pl.webp"
+  en:
+    title: "Kayo and Zuza the Giraffe"
+    summary: "On the African savannah, Kayo meets Zuza, a giraffe who sees further than anyone. She shows him that everyone has their own \"just right\"."
+    duration: "17:53"
+    youtube: "RzTKz19Vnco"
+    spotify: "4R9LkaD9u4WuKzn5sDBIzr"
+    apple: "1000785332645"
+    cover: "/img/covers/s01e03_en.webp"
+  es:
+    title: "Kaio y la Jirafa Zuza"
+    summary: "En la sabana africana, Kaio conoce a Zuza, la jirafa que ve más lejos que nadie. Con ella aprende que cada uno está hecho \"a su medida\"."
+    duration: "19:03"
+    youtube: "dygoH6jTd9E"
+    spotify: "4SZjmxx00s8KnXt3g9eY1M"
+    apple: "1000785333169"
+    cover: "/img/covers/s01e03_es.webp"
+  hi:
+    title: "कायो और ज़िराफ़ ज़ूज़ा"
+    summary: "अफ़्रीका के सवाना में कायो ज़िराफ़ ज़ूज़ा से मिलता है, जो सबसे दूर तक देखती है। उससे कायो सीखता है कि हर कोई अपने ढंग से \"एकदम सही\" है।"
+    duration: "18:24"
+    youtube: "1jrPm4KFoso"
+    spotify: "0fjUz0WowJghbdFC11K1zA"
+    apple: "1000785333172"
+    cover: "/img/covers/s01e03_hi.webp"
+
+- number: 4
+  pl:
+    title: "Kajo i Koala Kiki"
+    summary: "W Australii Kajo poznaje koalę Kiki, która nigdzie się nie spieszy. Uczy się od niej, że czasem najlepiej usiąść i poczekać. Wtedy zaczyna dostrzegać inne odcienie świata, a to, czego wcześniej nie zauważał, przychodzi samo."
+    duration: "20:16"
+    youtube: "PKZR1XK50JY"
+    spotify: "1hPMA7gd1DH2HCqoURHxK5"
+    apple: "1000785550420"
+    cover: "/img/covers/s01e04_pl.webp"
+  en:
+    title: "Kayo and Kiki the Koala"
+    summary: "In Australia, Kayo meets Kiki, a koala who is in no hurry at all. He learns from her that sometimes it's best to sit down and wait. As he waits, he begins to see the world in a new light, and things he never noticed before come to him on their own."
+    duration: "18:51"
+    youtube: "40J137Gvc0E"
+    spotify: "2nRkBh32g8Qln8fp8KZv49"
+    apple: "1000785332565"
+    cover: "/img/covers/s01e04_en.webp"
+  es:
+    title: "Kaio y la Koala Kiki"
+    summary: "En Australia, Kaio conoce a Kiki, una koala que no tiene ninguna prisa. Aprende de ella que a veces lo mejor es sentarse y esperar. Mientras espera, empieza a ver el mundo con otros ojos, y lo que antes no notaba llega por sí solo."
+    duration: "19:38"
+    youtube: "6uhqMDjJyQY"
+    spotify: "1CKT6Lk8AP8TT7SnWl371M"
+    apple: "1000785333139"
+    cover: "/img/covers/s01e04_es.webp"
+  hi:
+    title: "कायो और कोआला किकी"
+    summary: "ऑस्ट्रेलिया में कायो कोआला किकी से मिलता है, जिसे किसी बात की जल्दी नहीं है। वह किकी से सीखता है कि कभी-कभी बस बैठकर इंतज़ार करना ही सबसे अच्छा होता है। इंतज़ार करते हुए उसे दुनिया नए रंगों में दिखाई देने लगती है। जिन चीज़ों पर पहले उसका ध्यान नहीं गया था, वे अपने आप उसके सामने आने लगती हैं।"
+    duration: "19:10"
+    youtube: "-9ohHldxGYg"
+    spotify: "3lNCuGWlepMVxbYYSaU2Yl"
+    apple: "1000785333089"
+    cover: "/img/covers/s01e04_hi.webp"
+
+- number: 5
+  pl:
+    title: "Kajo i Małpka Miko"
+    summary: "W Japonii Kajo poznaje małpkę Miko, która kłania się na powitanie i nigdy nie podnosi głosu. Od Miko uczy się, że uprzejmość to coś więcej niż zasady: to robienie czegoś dobrego dla innych z własnej chęci, a nie z obowiązku."
+    duration: "18:05"
+    youtube: "S3mFkcqvVbg"
+    spotify: "2OxN93SkeuHaoTZNdfx2lz"
+    apple: "1000785550480"
+    cover: "/img/covers/s01e05_pl.webp"
+  en:
+    title: "Kayo and Miko the Snow Monkey"
+    summary: "In Japan, Kayo meets Miko, a snow monkey who bows to say hello and never raises his voice. Kayo learns that being polite is more than following rules: it means doing something kind for others because you want to, not because you have to."
+    duration: "18:13"
+    youtube: "-sLeCCyNLYc"
+    spotify: "3QI9bZpqdMtYHVJDMlsmeO"
+    apple: "1000787415670"
+    cover: "/img/covers/s01e05_en.webp"
+  es:
+    title: "Kaio y el Mono Miko"
+    summary: "En Japón, Kaio conoce al mono Miko, que saluda con una reverencia y nunca levanta la voz. Kaio aprende que ser amable es más que seguir reglas: es hacer algo bueno por los demás por voluntad propia y no por obligación."
+    duration: "18:57"
+    youtube: "s8D3Wpf7__8"
+    spotify: "65dHaeJROA0JxDMgGlWC6y"
+    apple: "1000788332354"
+    cover: "/img/covers/s01e05_es.webp"
+  hi:
+    title: "कायो और बंदर मीको"
+    summary: "जापान में कायो बंदर मीको से मिलता है, जो झुककर नमस्ते करता है और कभी ऊँची आवाज़ में नहीं बोलता। कायो सीखता है कि अच्छा व्यवहार करने का मतलब सिर्फ़ नियम मानना नहीं है। इसका मतलब है दूसरों के लिए अपनी इच्छा से कुछ अच्छा करना, मजबूरी में नहीं।"
+    duration: "19:25"
+    youtube: "u6sGVVQfsAY"
+    spotify: "02csif8gzLHeWidn83Rr1K"
+    apple: "1000789026950"
+    cover: "/img/covers/s01e05_hi.webp"

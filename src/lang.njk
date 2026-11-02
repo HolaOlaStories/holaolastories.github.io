@@ -1,0 +1,187 @@
+---
+pagination:
+  data: site.langs
+  size: 1
+  alias: lang
+permalink: "/{{ lang }}/index.html"
+eleventyExcludeFromCollections: true
+---
+{%- from "links.njk" import listen, card -%}
+{%- set t = i18n[lang] -%}
+{%- set show = shows[lang] -%}
+{%- set root = "../" -%}
+{%- set eps = episodes | inLang(lang) -%}
+<!doctype html>
+<html lang="{{ t.htmlLang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ t.metaTitle }}</title>
+<meta name="description" content="{{ t.metaDescription }}">
+{% if site.noindex %}<meta name="robots" content="noindex">
+{% endif %}<link rel="canonical" href="{{ site.url }}/{{ lang }}/">
+{% for code in site.langs %}<link rel="alternate" hreflang="{{ i18n[code].htmlLang }}" href="{{ site.url }}/{{ code }}/">
+{% endfor %}<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ t.series }}">
+<meta property="og:description" content="{{ t.metaDescription }}">
+<meta property="og:url" content="{{ site.url }}/{{ lang }}/">
+<meta property="og:image" content="{{ site.url }}/img/og-kajo.jpg">
+<meta property="og:locale" content="{{ t.ogLocale }}">
+<meta name="theme-color" content="#2E3F58">
+<link rel="icon" href="{{ '/img/favicon-64.png' | rel(root) }}" type="image/png">
+<link rel="apple-touch-icon" href="{{ '/img/apple-touch-icon.png' | rel(root) }}">
+<link rel="preload" href="{{ '/assets/fonts/baloo-2-latin-800-normal.woff2' | rel(root) }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/fonts.css' | rel(root) }}">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | rel(root) }}">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></symbol>
+  <symbol id="i-audio" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="3" y="13" width="5" height="7" rx="2" fill="currentColor"/><rect x="16" y="13" width="5" height="7" rx="2" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+</svg>
+<a class="skip" href="#odcinki">{{ t.skipLink }}</a>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="#top" aria-label="{{ t.brand }}">
+      <img src="{{ '/img/logo-holaola-192.webp' | rel(root) }}" width="40" height="40" alt="">
+      <span class="brand__name">{{ t.brand }}</span>
+    </a>
+    <nav class="langs" aria-label="{{ t.switcherLabel }}">
+      <ul>
+        {% for code in site.langs %}
+        <li><a href="{{ root }}{{ code }}/{{ site.indexFile }}" hreflang="{{ i18n[code].htmlLang }}" lang="{{ i18n[code].htmlLang }}" data-lang-link="{{ code }}"{% if code == lang %} aria-current="page"{% endif %}>{{ i18n[code].langName }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="eyebrow">{{ t.eyebrow }}</p>
+        <h1 class="wordmark">{{ t.series }}</h1>
+        <p class="slogan">{{ t.slogan }}</p>
+        <p class="lead">{{ t.lead }}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#ep1"><svg aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>{{ t.listen }}</a>
+          <p class="series-links"><span class="series-links__label">{{ t.seriesOn }}:</span>
+            <a href="https://www.youtube.com/{{ show.youtube }}" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://open.spotify.com/show/{{ show.spotify }}" target="_blank" rel="noopener">Spotify</a>
+            <a href="https://podcasts.apple.com/us/podcast/id{{ show.apple }}" target="_blank" rel="noopener">Apple Podcasts</a>
+          </p>
+        </div>
+      </div>
+      <figure class="hero__art">
+        <img src="{{ '/img/kajo-hero-900.webp' | rel(root) }}" srcset="{{ '/img/kajo-hero-900.webp' | rel(root) }} 900w, {{ '/img/kajo-hero-1600.webp' | rel(root) }} 1600w" sizes="(min-width: 960px) 55vw, 100vw" width="1600" height="872" alt="{{ t.heroAlt }}" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <div id="odcinki">
+  {% if eps.length %}
+  <section class="start" aria-labelledby="start-h">
+    <div class="wrap">
+      <h2 id="start-h">{{ t.startHeading }}</h2>
+      <p class="section-note">{{ t.startNote }}</p>
+      {{ card(eps[0], lang, t, i18n, shows, site, root, true) }}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if eps.length > 1 %}
+  <section class="more" aria-labelledby="more-h">
+    <div class="wrap">
+      <h2 id="more-h">{{ t.moreHeading }}</h2>
+      <div class="grid">
+        {% for ep in eps %}{% if not loop.first %}
+        {{ card(ep, lang, t, i18n, shows, site, root, false) }}
+        {% endif %}{% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+  </div>
+
+  <section class="bilingual" aria-labelledby="bi-h">
+    <div class="wrap bilingual__grid">
+      <div class="bilingual__text">
+        <h2 id="bi-h">{{ t.bilingualHeading }}</h2>
+        <p>{{ t.bilingualIntro }}</p>
+        <p>{{ t.bilingualStepsIntro }}</p>
+        <ol class="steps">
+          {% for s in t.bilingualSteps %}<li>{{ s }}</li>
+          {% endfor %}
+        </ol>
+        <p>{{ t.factsNote }}</p>
+      </div>
+      <div class="names">
+        <p class="names__note">{{ t.namesNote }}</p>
+        <ul>
+          {% for code in site.langs %}
+          <li><span class="names__hero" lang="{{ i18n[code].htmlLang }}">{{ i18n[code].heroName }}</span><span class="names__lang" lang="{{ i18n[code].htmlLang }}">{{ i18n[code].langName }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="creators" aria-labelledby="cr-h">
+    <div class="wrap creators__grid">
+      <div class="creators__text">
+        <h2 id="cr-h">{{ t.creatorsHeading }}</h2>
+        {% for p in t.creators %}<p>{{ p }}</p>
+        {% endfor %}
+        <p class="voice">{{ t.voice }}</p>
+      </div>
+      <figure class="creators__art">
+        <img src="{{ '/img/kajo-przyjaciele-800.webp' | rel(root) }}" srcset="{{ '/img/kajo-przyjaciele-800.webp' | rel(root) }} 800w, {{ '/img/kajo-przyjaciele-1400.webp' | rel(root) }} 1400w" sizes="(min-width: 960px) 45vw, 100vw" width="1400" height="873" alt="{{ t.friendsAlt }}" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <section class="contact" aria-labelledby="ct-h">
+    <div class="wrap">
+      <div class="contact__box">
+        <h2 id="ct-h">{{ t.contactHeading }}</h2>
+        <p>{{ t.contactText }}</p>
+        <p class="contact__mail"><a href="mailto:{{ site.email }}" id="mail">{{ site.email }}</a>
+          <button type="button" class="copy" id="copy-mail" data-copy="{{ site.email }}" data-done="{{ t.copied }}">{{ t.copyEmail }}</button></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <p class="foot__brand">{{ site.name }}</p>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    </div>
+    <div>
+      <p class="foot__h">{{ t.footerListen }}</p>
+      <ul>
+        <li><a href="https://www.youtube.com/{{ show.youtube }}" target="_blank" rel="noopener">YouTube {{ show.youtube }}</a></li>
+        <li><a href="https://open.spotify.com/show/{{ show.spotify }}" target="_blank" rel="noopener">Spotify</a></li>
+        <li><a href="https://podcasts.apple.com/us/podcast/id{{ show.apple }}" target="_blank" rel="noopener">Apple Podcasts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="foot__h">{{ t.footerLangs }}</p>
+      <ul>
+        {% for code in site.langs %}{% if code != lang %}
+        <li><a href="{{ root }}{{ code }}/{{ site.indexFile }}" hreflang="{{ i18n[code].htmlLang }}" lang="{{ i18n[code].htmlLang }}" data-lang-link="{{ code }}">{{ i18n[code].langName }}: {{ i18n[code].series }}</a></li>
+        {% endif %}{% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="wrap"><p class="foot__copy">© {{ site.year }} {{ site.name }}</p></div>
+</footer>
+<script src="{{ '/assets/js/site.js' | rel(root) }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<main class="chooser">
+  <div class="wrap chooser__inner">
+    <img class="chooser__logo" src="{{ '/img/logo-holaola-192.webp' | rel(root) }}" width="96" height="96" alt="HolaOla">
+    <p class="chooser__site">{{ site.name }}</p>
+    <ul class="chooser__list">
+      {% for code in site.langs %}
+      <li><a href="{{ root }}{{ code }}/{{ site.indexFile }}" hreflang="{{ i18n[code].htmlLang }}" lang="{{ i18n[code].htmlLang }}" data-lang-link="{{ code }}">
+        <span class="chooser__series">{{ i18n[code].series }}</span>
+        <span class="chooser__lang">{{ i18n[code].langName }}</span>
+      </a></li>
+      {% endfor %}
+    </ul>
+    {% if note %}<p class="chooser__note">{{ note }}</p>{% endif %}
+  </div>
+</main>

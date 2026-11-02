@@ -1,0 +1,43 @@
+---
+permalink: "/index.html"
+eleventyExcludeFromCollections: true
+---
+{%- set root = "" -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ site.name }}: Pingwinek Kajo, Kayo the Penguin, Kaio el Pingüino, कायो पेंगुइन</title>
+<meta name="description" content="Pingwinek Kajo, Kayo the Penguin, Kaio el Pingüino, कायो पेंगुइन: calm audio stories for kids in several languages.">
+{% if site.noindex %}<meta name="robots" content="noindex">
+{% endif %}<link rel="canonical" href="{{ site.url }}/">
+{% for code in site.langs %}<link rel="alternate" hreflang="{{ i18n[code].htmlLang }}" href="{{ site.url }}/{{ code }}/">
+{% endfor %}<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
+<link rel="icon" href="img/favicon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script>
+/* Pierwsza wizyta na holaolastories.com: wybór zapisany w przełączniku, potem język przeglądarki, inaczej angielski.
+   Adresy /pl/, /en/, /es/, /hi/ nigdy nie przenoszą same. Kotwica (#ep5) przechodzi dalej. */
+(function () {
+  var L = {{ site.langs | dump | safe }}, c = null;
+  try { c = localStorage.getItem("hoLang"); } catch (e) {}
+  if (L.indexOf(c) < 0) {
+    c = null;
+    var n = navigator.languages || [navigator.language || ""];
+    for (var i = 0; i < n.length && !c; i++) {
+      var p = String(n[i] || "").slice(0, 2).toLowerCase();
+      if (L.indexOf(p) >= 0) c = p;
+    }
+  }
+  if (L.indexOf(c) < 0) c = "{{ site.defaultLang }}";
+  location.replace(c + "/" + location.hash);
+})();
+</script>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+{% include "chooser.njk" %}
+</body>
+</html>

@@ -1,0 +1,24 @@
+---
+permalink: "/404.html"
+eleventyExcludeFromCollections: true
+---
+{#- Strona dla adresów, których nie ma. GitHub Pages pokazuje ją sam.
+    Ścieżki od korzenia domeny (root "/"), bo ten plik może się pokazać pod dowolnym adresem.
+    Na testowym adresie github.io/<repozytorium>/ wygląda gorzej, na holaolastories.com działa w pełni. -#}
+{%- set root = "/" -%}
+{%- set note = "Nie ma takiej strony. Page not found. Página no encontrada. यह पेज नहीं मिला।" -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ site.name }}</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/img/favicon-64.png" type="image/png">
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+{% include "chooser.njk" %}
+</body>
+</html>
