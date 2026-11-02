@@ -1,0 +1,6 @@
+node_modules/
+_site/
+_preview/
+
+# Prywatny podgląd (tylko lokalnie)
+src/preview-root.njk
