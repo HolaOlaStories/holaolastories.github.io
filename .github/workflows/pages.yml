@@ -28,8 +28,8 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # "1" = strona ma noindex (adres testowy github.io). Na start na holaolastories.com zmienić na "0".
-          NOINDEX: "1"
+          # "0" = strona jest indeksowana (start na holaolastories.com 2.11.2026). "1" = noindex.
+          NOINDEX: "0"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
