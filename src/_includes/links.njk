@@ -15,7 +15,7 @@
     <h3 class="ep__title" id="ep{{ ep.number }}-title">{{ v.title }}</h3>
   </div>
   <p class="ep__summary">{{ v.summary }}</p>
-  <div class="ep__listen">{{ listen(v, shows[lang], t, "", false) }}</div>
+  <div class="ep__listen"><p class="ep__listen-label">{{ t.listenOn }}</p>{{ listen(v, shows[lang], t, "", false) }}</div>
   {% set others = ep | otherLangs(lang, site.langs) %}
   {% if others.length %}
   <details class="ep__langs"{% if featured %} open{% endif %}>

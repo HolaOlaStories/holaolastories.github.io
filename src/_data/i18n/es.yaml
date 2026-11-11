@@ -26,6 +26,8 @@ episodeLong: "Episodio"
 minutes: "min"
 coverAlt: "Portada"
 otherLangs: "El mismo cuento en otros idiomas"
+listenOn: "Escúchalo en:"
+epMissing: "El episodio {n} no está en esta página. Los episodios disponibles están abajo."
 
 bilingualHeading: "Un cuento - varios idiomas"
 bilingualIntro: "Los cuentos de Kaio están disponibles en varios idiomas, y con el tiempo se sumarán nuevos episodios y versiones en otros idiomas. Cada versión cuenta la misma historia y conserva el número y el orden de los párrafos del original. Las traducciones mantienen el sentido del original con un lenguaje natural. La música y los efectos de sonido acompañan las mismas escenas, lo que puede ayudar a los niños a relacionar lo que ya conocen de la historia con las palabras y las frases del otro idioma."

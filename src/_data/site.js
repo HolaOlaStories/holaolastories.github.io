@@ -11,8 +11,10 @@ export default {
   // Kolejność języków w przełączniku i na stronie startowej.
   langs: ["pl", "en", "es", "hi"],
   defaultLang: "en",
-  // Do startu na holaolastories.com strona nie jest indeksowana.
-  noindex: process.env.NOINDEX !== "0",
+  // noindex tylko przy NOINDEX="1". Domyślnie (także bez zmiennej) strona jest indeksowana.
+  noindex: process.env.NOINDEX === "1",
+  // Dzień budowania (RRRR-MM-DD), do lastmod w mapie strony.
+  built: new Date().toISOString().slice(0, 10),
   preview,
   indexFile: preview ? "index.html" : "",
 };

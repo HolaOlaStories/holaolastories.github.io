@@ -3,26 +3,45 @@ permalink: "/index.html"
 eleventyExcludeFromCollections: true
 ---
 {%- set root = "" -%}
+{%- set title = "Kayo the Penguin: audio stories in " + site.langs.length + " languages | " + site.name -%}
+{#- Opis po rundzie Codex 11.11.2026. Zakres odcinków i nazwy języków wpisane ręcznie: zmienić przy nowym odcinku albo języku. -#}
+{%- set description = "Calm audio stories for kids about a little penguin who meets animals around the world. Episodes 1-5 are available in Polish, English, Spanish and Hindi." -%}
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{{ site.name }}: Pingwinek Kajo, Kayo the Penguin, Kaio el Pingüino, कायो पेंगुइन</title>
-<meta name="description" content="Pingwinek Kajo, Kayo the Penguin, Kaio el Pingüino, कायो पेंगुइन: calm audio stories for kids in several languages.">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
 {% if site.noindex %}<meta name="robots" content="noindex">
 {% endif %}<link rel="canonical" href="{{ site.url }}/">
 {% for code in site.langs %}<link rel="alternate" hreflang="{{ i18n[code].htmlLang }}" href="{{ site.url }}/{{ code }}/">
 {% endfor %}<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ site.url }}/">
+<meta property="og:image" content="{{ site.url }}/img/og-kajo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ i18n.en.heroAlt }}">
+<meta property="og:locale" content="{{ i18n.en.ogLocale }}">
+{% for code in site.langs %}{% if code != "en" %}<meta property="og:locale:alternate" content="{{ i18n[code].ogLocale }}">
+{% endif %}{% endfor %}<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2E3F58">
 <link rel="icon" href="img/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <script>
-/* Pierwsza wizyta na holaolastories.com: wybór zapisany w przełączniku, potem język przeglądarki, inaczej angielski.
-   Adresy /pl/, /en/, /es/, /hi/ nigdy nie przenoszą same. Kotwica (#ep5) przechodzi dalej. */
+/* Strona startowa holaolastories.com to wybór języka. Przenosi od razu tylko wtedy, gdy:
+   - gość wybrał już język (przełącznik albo ten ekran zapisuje go jako hoLang), albo
+   - adres ma kotwicę odcinka (#ep3): wtedy zapisany wybór, potem język przeglądarki, inaczej angielski.
+   Bez zapisanego wyboru i bez kotwicy (tak wchodzi Googlebot) zostaje wybór języka. */
 (function () {
-  var L = {{ site.langs | dump | safe }}, c = null;
+  var L = {{ site.langs | dump | safe }}, c = null, h = location.hash, ep = /^#ep\d+$/.test(h);
   try { c = localStorage.getItem("hoLang"); } catch (e) {}
   if (L.indexOf(c) < 0) {
+    if (!ep) return;
     c = null;
     var n = navigator.languages || [navigator.language || ""];
     for (var i = 0; i < n.length && !c; i++) {
@@ -31,13 +50,17 @@ eleventyExcludeFromCollections: true
     }
   }
   if (L.indexOf(c) < 0) c = "{{ site.defaultLang }}";
-  location.replace(c + "/" + location.hash);
+  location.replace(c + "/{{ site.indexFile }}" + (ep ? h : ""));
 })();
+</script>
+<script type="application/ld+json">
+{{ "" | jsonld({ site: site, i18n: i18n, shows: shows, episodes: episodes }) | safe }}
 </script>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 {% include "chooser.njk" %}
+<script src="assets/js/site.js" defer></script>
 </body>
 </html>

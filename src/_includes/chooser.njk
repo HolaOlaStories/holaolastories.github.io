@@ -1,15 +1,17 @@
+{#- Wybór języka: strona startowa, 404 i ekran podglądu. Cała karta jest klikalna (link rozciągnięty w CSS). -#}
 <main class="chooser">
   <div class="wrap chooser__inner">
-    <img class="chooser__logo" src="{{ '/img/logo-holaola-192.webp' | rel(root) }}" width="96" height="96" alt="HolaOla">
-    <p class="chooser__site">{{ site.name }}</p>
+    <img class="chooser__logo" src="{{ '/img/logo-holaola-192.webp' | rel(root) }}" width="96" height="96" alt="">
+    <h1 class="chooser__site">{{ site.name }}</h1>
+    {% if note %}<p class="chooser__note">{{ note }}</p>{% endif %}
     <ul class="chooser__list">
-      {% for code in site.langs %}
-      <li><a href="{{ root }}{{ code }}/{{ site.indexFile }}" hreflang="{{ i18n[code].htmlLang }}" lang="{{ i18n[code].htmlLang }}" data-lang-link="{{ code }}">
-        <span class="chooser__series">{{ i18n[code].series }}</span>
-        <span class="chooser__lang">{{ i18n[code].langName }}</span>
-      </a></li>
+      {% for code in site.langs %}{% set tc = i18n[code] %}
+      <li class="chooser__item" lang="{{ tc.htmlLang }}">
+        <h2 class="chooser__series">{{ tc.series }}</h2>
+        <p class="chooser__line">{{ tc.metaDescription | firstSentence }}</p>
+        <a class="chooser__btn" href="{{ root }}{{ code }}/{{ site.indexFile }}" hreflang="{{ tc.htmlLang }}" data-lang-link="{{ code }}">{{ tc.langName }}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </li>
       {% endfor %}
     </ul>
-    {% if note %}<p class="chooser__note">{{ note }}</p>{% endif %}
   </div>
 </main>

@@ -8,10 +8,12 @@
 #   youtube  ID filmu (to, co jest po watch?v=)
 #   spotify  ID odcinka (to, co jest po open.spotify.com/episode/)
 #   apple    numer odcinka w Apple Podcasts (to, co jest po ?i=)
+#   published data publikacji w kanale RSS pokazu (Spotify for Creators), RRRR-MM-DD
 #   cover    okładka kwadratowa, WebP 720 px
 #
 # Stan danych: ID YouTube sprawdzone 31.10.2026 przez oEmbed YouTube (każdy film na właściwym kanale),
 # Spotify odczytane 31.10.2026 ze stron pokazów, Apple i czasy z API Apple 31.10.2026.
+# Daty publikacji: pubDate z kanałów RSS Spotify for Creators, sprawdzone 11.11.2026 (API Apple i bezpośrednio RSS, 20 z 20).
 
 - number: 1
   pl:
@@ -21,6 +23,7 @@
     youtube: "BbRc8RFGz1c"
     spotify: "4zBXe6zXNRkEzCLnMnUI75"
     apple: "1000785550421"
+    published: "2026-08-13"
     cover: "/img/covers/s01e01_pl.webp"
   en:
     title: "Kayo and Hugo the Whale"
@@ -29,6 +32,7 @@
     youtube: "wU6vhr_HLGk"
     spotify: "5Hkgd4kN8R0uI6eFBOpOb2"
     apple: "1000785332616"
+    published: "2026-08-13"
     cover: "/img/covers/s01e01_en.webp"
   es:
     title: "Kaio y la Ballena Hugo"
@@ -37,6 +41,7 @@
     youtube: "0l7nLyALaYg"
     spotify: "1jUdAa5wPxBeHxaCL0IBP3"
     apple: "1000785333219"
+    published: "2026-08-14"
     cover: "/img/covers/s01e01_es.webp"
   hi:
     title: "कायो और व्हेल हूगो"
@@ -45,6 +50,7 @@
     youtube: "3bqGh-ShqI0"
     spotify: "0YdRW1nXjdHWwEb08QjK6w"
     apple: "1000785333060"
+    published: "2026-08-14"
     cover: "/img/covers/s01e01_hi.webp"
 
 - number: 2
@@ -55,6 +61,7 @@
     youtube: "-aoI7_J_lMg"
     spotify: "5odrbLLbb80jP3dsBS53zM"
     apple: "1000785550562"
+    published: "2026-08-13"
     cover: "/img/covers/s01e02_pl.webp"
   en:
     title: "Kayo and Ed the Elephant"
@@ -63,6 +70,7 @@
     youtube: "C7pecgBCwSU"
     spotify: "63lvjV5xFmbluivzm6r8Ao"
     apple: "1000785332541"
+    published: "2026-08-13"
     cover: "/img/covers/s01e02_en.webp"
   es:
     title: "Kaio y el Elefante Ed"
@@ -71,6 +79,7 @@
     youtube: "m8Ud6QGqBpg"
     spotify: "1963FRAbjOjrseJ9UtPGQl"
     apple: "1000785333085"
+    published: "2026-08-14"
     cover: "/img/covers/s01e02_es.webp"
   hi:
     title: "कायो और हाथी एड"
@@ -79,6 +88,7 @@
     youtube: "Lj14PBwrYdw"
     spotify: "7JUbFUx63QZVMKojjPGwPg"
     apple: "1000785333061"
+    published: "2026-08-14"
     cover: "/img/covers/s01e02_hi.webp"
 
 - number: 3
@@ -89,6 +99,7 @@
     youtube: "IaW9SSf9rD8"
     spotify: "16CTl4r6n0uYVZCSAUT7Kp"
     apple: "1000785550479"
+    published: "2026-08-13"
     cover: "/img/covers/s01e03_pl.webp"
   en:
     title: "Kayo and Zuza the Giraffe"
@@ -97,6 +108,7 @@
     youtube: "RzTKz19Vnco"
     spotify: "4R9LkaD9u4WuKzn5sDBIzr"
     apple: "1000785332645"
+    published: "2026-08-13"
     cover: "/img/covers/s01e03_en.webp"
   es:
     title: "Kaio y la Jirafa Zuza"
@@ -105,6 +117,7 @@
     youtube: "dygoH6jTd9E"
     spotify: "4SZjmxx00s8KnXt3g9eY1M"
     apple: "1000785333169"
+    published: "2026-08-14"
     cover: "/img/covers/s01e03_es.webp"
   hi:
     title: "कायो और ज़िराफ़ ज़ूज़ा"
@@ -113,6 +126,7 @@
     youtube: "1jrPm4KFoso"
     spotify: "0fjUz0WowJghbdFC11K1zA"
     apple: "1000785333172"
+    published: "2026-08-14"
     cover: "/img/covers/s01e03_hi.webp"
 
 - number: 4
@@ -123,6 +137,7 @@
     youtube: "PKZR1XK50JY"
     spotify: "1hPMA7gd1DH2HCqoURHxK5"
     apple: "1000785550420"
+    published: "2026-08-13"
     cover: "/img/covers/s01e04_pl.webp"
   en:
     title: "Kayo and Kiki the Koala"
@@ -131,6 +146,7 @@
     youtube: "40J137Gvc0E"
     spotify: "2nRkBh32g8Qln8fp8KZv49"
     apple: "1000785332565"
+    published: "2026-08-13"
     cover: "/img/covers/s01e04_en.webp"
   es:
     title: "Kaio y la Koala Kiki"
@@ -139,6 +155,7 @@
     youtube: "6uhqMDjJyQY"
     spotify: "1CKT6Lk8AP8TT7SnWl371M"
     apple: "1000785333139"
+    published: "2026-08-14"
     cover: "/img/covers/s01e04_es.webp"
   hi:
     title: "कायो और कोआला किकी"
@@ -147,6 +164,7 @@
     youtube: "-9ohHldxGYg"
     spotify: "3lNCuGWlepMVxbYYSaU2Yl"
     apple: "1000785333089"
+    published: "2026-08-14"
     cover: "/img/covers/s01e04_hi.webp"
 
 - number: 5
@@ -157,6 +175,7 @@
     youtube: "S3mFkcqvVbg"
     spotify: "2OxN93SkeuHaoTZNdfx2lz"
     apple: "1000785550480"
+    published: "2026-08-13"
     cover: "/img/covers/s01e05_pl.webp"
   en:
     title: "Kayo and Miko the Snow Monkey"
@@ -165,6 +184,7 @@
     youtube: "-sLeCCyNLYc"
     spotify: "3QI9bZpqdMtYHVJDMlsmeO"
     apple: "1000787415670"
+    published: "2026-09-02"
     cover: "/img/covers/s01e05_en.webp"
   es:
     title: "Kaio y el Mono Miko"
@@ -173,6 +193,7 @@
     youtube: "s8D3Wpf7__8"
     spotify: "65dHaeJROA0JxDMgGlWC6y"
     apple: "1000788332354"
+    published: "2026-09-07"
     cover: "/img/covers/s01e05_es.webp"
   hi:
     title: "कायो और बंदर मीको"
@@ -181,4 +202,5 @@
     youtube: "u6sGVVQfsAY"
     spotify: "02csif8gzLHeWidn83Rr1K"
     apple: "1000789026950"
+    published: "2026-09-11"
     cover: "/img/covers/s01e05_hi.webp"

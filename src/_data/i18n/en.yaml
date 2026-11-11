@@ -26,6 +26,8 @@ episodeLong: "Episode"
 minutes: "min"
 coverAlt: "Cover"
 otherLangs: "The same story in other languages"
+listenOn: "Listen on:"
+epMissing: "Episode {n} is not on this page. The available episodes are below."
 
 bilingualHeading: "One story - many languages"
 bilingualIntro: "Kayo's stories are available in several languages, with more episodes and language versions to come. Each version tells the same story and keeps the original number and order of paragraphs. The translations preserve the meaning of the original while using natural language. The music and sound effects accompany the same scenes, which may help children connect familiar events with words and sentences in the other language."

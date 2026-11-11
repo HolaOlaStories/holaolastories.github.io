@@ -28,13 +28,20 @@ eleventyExcludeFromCollections: true
 <meta property="og:description" content="{{ t.metaDescription }}">
 <meta property="og:url" content="{{ site.url }}/{{ lang }}/">
 <meta property="og:image" content="{{ site.url }}/img/og-kajo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ t.heroAlt }}">
 <meta property="og:locale" content="{{ t.ogLocale }}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#2E3F58">
 <link rel="icon" href="{{ '/img/favicon-64.png' | rel(root) }}" type="image/png">
 <link rel="apple-touch-icon" href="{{ '/img/apple-touch-icon.png' | rel(root) }}">
 <link rel="preload" href="{{ '/assets/fonts/baloo-2-latin-800-normal.woff2' | rel(root) }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/fonts.css' | rel(root) }}">
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | rel(root) }}">
+<script type="application/ld+json">
+{{ lang | jsonld({ site: site, i18n: i18n, shows: shows, episodes: episodes }) | safe }}
+</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -84,6 +91,7 @@ eleventyExcludeFromCollections: true
   </section>
 
   <div id="odcinki">
+  <div class="wrap"><p class="ep-missing" id="ep-missing" role="status" data-text="{{ t.epMissing }}" hidden></p></div>
   {% if eps.length %}
   <section class="start" aria-labelledby="start-h">
     <div class="wrap">

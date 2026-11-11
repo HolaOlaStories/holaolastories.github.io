@@ -4,9 +4,10 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-{%- for code in site.langs %}
+{%- for path in [""].concat(site.langs) %}
   <url>
-    <loc>{{ site.url }}/{{ code }}/</loc>
+    <loc>{{ site.url }}/{% if path %}{{ path }}/{% endif %}</loc>
+    <lastmod>{{ site.built }}</lastmod>
     {%- for alt in site.langs %}
     <xhtml:link rel="alternate" hreflang="{{ i18n[alt].htmlLang }}" href="{{ site.url }}/{{ alt }}/"/>
     {%- endfor %}
