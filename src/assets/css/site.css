@@ -350,6 +350,10 @@ section { padding-block: 40px; }
 .xmas__h:lang(hi) { line-height: 1.35; }
 .xmas__list { display: grid; gap: 16px; max-width: 760px; }
 .ep.ep--special { grid-template-areas: "cover head" "summary summary" "credits credits" "listen listen" "langs langs"; }
+/* Na telefonie "Posłuchaj" nad opisem, żeby przyciski były na pierwszym ekranie (decyzja Jakuba 20.11). */
+@media (max-width: 759px) {
+  .ep.ep--special { grid-template-areas: "cover head" "listen listen" "summary summary" "credits credits" "langs langs"; }
+}
 .ep__credits { grid-area: credits; font-size: 0.9375rem; color: var(--ink-soft); margin-top: -6px; }
 .xmas__more { display: grid; gap: 12px; margin-top: 24px; max-width: 760px; }
 .xmas__first { font-weight: 600; }
