@@ -14,4 +14,13 @@ eleventyExcludeFromCollections: true
     <xhtml:link rel="alternate" hreflang="x-default" href="{{ site.url }}/"/>
   </url>
 {%- endfor %}
+{%- for code, xp in christmas.pages %}
+  <url>
+    <loc>{{ site.url }}/{{ code }}/{{ xp.slug }}/</loc>
+    <lastmod>{{ site.built }}</lastmod>
+    {%- for alt in site.langs %}{% if christmas.pages[alt] %}
+    <xhtml:link rel="alternate" hreflang="{{ i18n[alt].htmlLang }}" href="{{ site.url }}/{{ alt }}/{{ christmas.pages[alt].slug }}/"/>
+    {%- endif %}{% endfor %}
+  </url>
+{%- endfor %}
 </urlset>

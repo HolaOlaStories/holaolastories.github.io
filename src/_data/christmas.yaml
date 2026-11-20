@@ -1,0 +1,51 @@
+# Strona świąteczna (stały adres, cały rok) i pasek sezonowy na stronie języka.
+# Za rok: zmienić daty paska (bannerFrom, bannerUntil) i ewentualnie dopisać kolejną bajkę w "episodes".
+#
+# pages.<język>: strona świąteczna w tym języku. Brak klucza języka = nie ma tej strony ani paska.
+#   slug         adres strony: /<język>/<slug>/
+#   bannerFrom   pierwszy dzień paska na stronie języka (RRRR-MM-DD)
+#   bannerUntil  ostatni dzień paska, włącznie. Od następnego dnia przeglądarka sama go ukrywa,
+#                bez nowego wdrożenia. Przy pierwszym wdrożeniu po tej dacie pasek nie trafia do HTML.
+#   banner       pełny tekst paska (czytają go czytniki ekranu); na ekranie: bannerEyebrow, bannerTitle, bannerCta
+#   bannerImages dwa kafelki 2:1 (640x320) po bokach paska, ozdobne
+#   image        obraz podglądu linków 1200x630
+#   aliases      inne pisownie adresu, które strona 404 przenosi na właściwy adres
+#
+# episodes: bajki na stronie świątecznej, pola wersji językowej jak w episodes.yaml, plus:
+#   id       kotwica karty (/pl/swieta/#mikolaj)
+#   apple    numer odcinka w Apple Podcasts; pusty = przycisk Apple prowadzi do całego pokazu
+#   credits  podpis pod opisem
+
+pages:
+  pl:
+    slug: "swieta"
+    aliases: ["święta"]
+    bannerFrom: "2026-11-20"
+    bannerUntil: "2027-01-06"
+    banner: "Na Mikołajki i święta: Kajo i zaginiony Mikołaj. Posłuchaj"
+    bannerEyebrow: "Na Mikołajki i święta"
+    bannerTitle: "Kajo i zaginiony Mikołaj"
+    bannerCta: "Posłuchaj →"
+    bannerImages: ["/img/swieta26-pasek-a.webp", "/img/swieta26-pasek-b.webp"]
+    metaTitle: "Kajo i zaginiony Mikołaj: bajka świąteczna | HolaOla Bajki"
+    metaDescription: "Świąteczna bajka do słuchania dla dzieci. Burza śnieżna, renifer Radek i zaginiony Mikołaj. Około 15 minut, czyta Ola Stalmach."
+    eyebrow: "Na Mikołajki i święta"
+    heading: "Bajka świąteczna z Pingwinkiem Kajo"
+    pill: "Na święta"
+    firstTimeQ: "Pierwszy raz u Kaja?"
+    firstTimeLink: "Zacznij od odcinka 1 →"
+    image: "/img/og-swieta26-pl.jpg"
+    imageAlt: "Pingwinek Kajo i renifer Radek na grzbiecie wieloryba Huga, w tle pingwiny przy saniach Mikołaja"
+
+episodes:
+  - id: "mikolaj"
+    pl:
+      title: "Kajo i zaginiony Mikołaj"
+      summary: "W noc przed Wigilią nad lodową wyspę Kaja nadchodzi burza śnieżna. Rano do pingwinków przychodzi nietypowy renifer Radek z niepokojącą wiadomością: Mikołaj zniknął, a bez niego renifery nie potrafią latać. Kajo i Radek ruszają na grzbiecie wieloryba Huga, żeby go odnaleźć."
+      duration: "15:17"
+      youtube: "0ZJqsiLO1UA"
+      spotify: "3clW0fQRvHJG1VXIwGf19j"
+      apple: ""
+      published: "2026-11-20"
+      cover: "/img/covers/swieta26_pl.webp"
+      credits: "Tekst: Jakub Leśniak. Czyta: Ola Stalmach."

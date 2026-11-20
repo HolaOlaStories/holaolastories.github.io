@@ -1,0 +1,27 @@
+{#- Stopka i skrypt strony. Wspólne dla strony języka i strony świątecznej. Potrzebuje: t, show, root, lang, seasonal. -#}
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <p class="foot__brand">{{ site.name }}</p>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    </div>
+    <div>
+      <p class="foot__h">{{ t.footerListen }}</p>
+      <ul>
+        <li><a href="https://www.youtube.com/{{ show.youtube }}" target="_blank" rel="noopener">YouTube {{ show.youtube }}</a></li>
+        <li><a href="https://open.spotify.com/show/{{ show.spotify }}" target="_blank" rel="noopener">Spotify</a></li>
+        <li><a href="https://podcasts.apple.com/us/podcast/id{{ show.apple }}" target="_blank" rel="noopener">Apple Podcasts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="foot__h">{{ t.footerLangs }}</p>
+      <ul>
+        {% for code in site.langs %}{% if code != lang %}
+        <li><a href="{{ root }}{{ code }}/{% if seasonal and christmas.pages[code] %}{{ christmas.pages[code].slug }}/{% endif %}{{ site.indexFile }}" hreflang="{{ i18n[code].htmlLang }}" lang="{{ i18n[code].htmlLang }}" data-lang-link="{{ code }}">{{ i18n[code].langName }}: {{ i18n[code].series }}</a></li>
+        {% endif %}{% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="wrap"><p class="foot__copy">© {{ site.year }} {{ site.name }}</p></div>
+</footer>
+<script src="{{ '/assets/js/site.js' | rel(root) }}" defer></script>

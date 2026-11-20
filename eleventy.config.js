@@ -23,6 +23,9 @@ export default function (eleventyConfig) {
   // Języki, w których odcinek istnieje, poza językiem strony.
   eleventyConfig.addFilter("otherLangs", (ep, lang, langs) => langs.filter((c) => c !== lang && ep[c]));
 
+  // Języki, które mają stronę świąteczną (christmas.yaml, pages).
+  eleventyConfig.addFilter("withPage", (codes, pages) => codes.filter((c) => pages && pages[c]));
+
   // Odcinki dostępne w danym języku.
   eleventyConfig.addFilter("inLang", (episodes, lang) => episodes.filter((e) => e[lang]));
 
@@ -40,6 +43,12 @@ export default function (eleventyConfig) {
   // lang = kod języka strony albo pusty dla strony startowej (wtedy tylko Organization i WebSite).
   eleventyConfig.addFilter("jsonld", (lang, d) => {
     const json = JSON.stringify(jsonld(lang, d), null, 1);
+    return json.replace(/</g, "\\u003c");
+  });
+
+  // Dane strukturalne strony świątecznej w danym języku (christmas.yaml).
+  eleventyConfig.addFilter("jsonldSeasonal", (lang, d) => {
+    const json = JSON.stringify(jsonldSeasonal(lang, d), null, 1);
     return json.replace(/</g, "\\u003c");
   });
 
@@ -166,4 +175,62 @@ function jsonld(lang, { site, i18n, shows, episodes }) {
     graph.push(node);
   }
   return { "@context": "https://schema.org", "@graph": graph };
+}
+
+// Strona świąteczna: Organization, WebSite, WebPage i bajki jako PodcastEpisode pokazu w tym języku.
+function jsonldSeasonal(lang, { site, i18n, shows, christmas }) {
+  const base = jsonld("", { site, i18n, shows, episodes: [] });
+  const graph = base["@graph"];
+  const u = site.url;
+  const t = i18n[lang];
+  const show = shows[lang];
+  const xp = christmas.pages[lang];
+  const pageUrl = (c) => u + "/" + c + "/" + christmas.pages[c].slug + "/";
+  const page = pageUrl(lang);
+  const eps = christmas.episodes.filter((e) => e[lang]);
+  const epRef = (ep, c) => ({ "@type": "PodcastEpisode", "@id": pageUrl(c) + "#" + ep.id, name: ep[c].title, inLanguage: i18n[c].htmlLang, url: pageUrl(c) + "#" + ep.id });
+
+  graph.push({
+    "@type": "WebPage",
+    "@id": page + "#webpage",
+    url: page,
+    name: xp.metaTitle,
+    description: xp.metaDescription,
+    inLanguage: t.htmlLang,
+    isPartOf: { "@id": u + "/#website" },
+    primaryImageOfPage: { "@type": "ImageObject", url: u + xp.image, width: 1200, height: 630 },
+    mainEntity: eps.length ? { "@id": page + "#" + eps[0].id } : undefined,
+  });
+
+  for (const ep of eps) {
+    const v = ep[lang];
+    const node = {
+      "@type": "PodcastEpisode",
+      "@id": page + "#" + ep.id,
+      url: page + "#" + ep.id,
+      name: v.title,
+      description: v.summary,
+      inLanguage: t.htmlLang,
+      duration: isoDuration(v.duration),
+    };
+    if (v.published) node.datePublished = v.published;
+    Object.assign(node, {
+      image: u + v.cover,
+      isAccessibleForFree: true,
+      partOfSeries: { "@type": "PodcastSeries", "@id": u + "/" + lang + "/#series", name: t.series, url: u + "/" + lang + "/" },
+      sameAs: [
+        "https://www.youtube.com/watch?v=" + v.youtube,
+        "https://open.spotify.com/episode/" + v.spotify,
+        "https://podcasts.apple.com/us/podcast/id" + show.apple + (v.apple ? "?i=" + v.apple : ""),
+      ],
+    });
+    const others = site.langs.filter((c) => c !== lang && ep[c] && christmas.pages[c]);
+    if (lang === ORIGINAL) {
+      if (others.length) node.workTranslation = others.map((c) => epRef(ep, c));
+    } else if (ep[ORIGINAL] && christmas.pages[ORIGINAL]) {
+      node.translationOfWork = epRef(ep, ORIGINAL);
+    }
+    graph.push(node);
+  }
+  return base;
 }

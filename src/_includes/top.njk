@@ -1,0 +1,25 @@
+{#- Ikony, link "przejdź do", nagłówek z przełącznikiem języka. Wspólne dla strony języka i strony świątecznej.
+    Potrzebuje: t, root, lang, brandHref, skipHref, seasonal (strona świąteczna: przełącznik prowadzi
+    do strony świątecznej w innym języku, jeśli ona istnieje). -#}
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></symbol>
+  <symbol id="i-audio" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="3" y="13" width="5" height="7" rx="2" fill="currentColor"/><rect x="16" y="13" width="5" height="7" rx="2" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+</svg>
+<a class="skip" href="{{ skipHref }}">{{ t.skipLink }}</a>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="{{ brandHref }}" aria-label="{{ t.brand }}">
+      <img src="{{ '/img/logo-holaola-192.webp' | rel(root) }}" width="40" height="40" alt="">
+      <span class="brand__name">{{ t.brand }}</span>
+    </a>
+    <nav class="langs" aria-label="{{ t.switcherLabel }}">
+      <ul>
+        {% for code in site.langs %}
+        <li><a href="{{ root }}{{ code }}/{% if seasonal and christmas.pages[code] %}{{ christmas.pages[code].slug }}/{% endif %}{{ site.indexFile }}" hreflang="{{ i18n[code].htmlLang }}" lang="{{ i18n[code].htmlLang }}" data-lang-link="{{ code }}"{% if code == lang %} aria-current="page"{% endif %}>{{ i18n[code].langName }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

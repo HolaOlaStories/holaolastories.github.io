@@ -2,7 +2,7 @@
 {% macro listen(v, show, t, langName, small) -%}
 <a class="pbtn{% if small %} pbtn--sm{% endif %}" href="https://www.youtube.com/watch?v={{ v.youtube }}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: YouTube, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-video"></use></svg>YouTube</a>
 <a class="pbtn{% if small %} pbtn--sm{% endif %}" href="https://open.spotify.com/episode/{{ v.spotify }}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: Spotify, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-audio"></use></svg>Spotify</a>
-<a class="pbtn{% if small %} pbtn--sm{% endif %}" href="https://podcasts.apple.com/us/podcast/id{{ show.apple }}?i={{ v.apple }}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: Apple Podcasts, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-audio"></use></svg>{% if small %}Apple{% else %}Apple Podcasts{% endif %}</a>
+<a class="pbtn{% if small %} pbtn--sm{% endif %}" href="https://podcasts.apple.com/us/podcast/id{{ show.apple }}{% if v.apple %}?i={{ v.apple }}{% endif %}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: Apple Podcasts, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-audio"></use></svg>{% if small %}Apple{% else %}Apple Podcasts{% endif %}</a>
 {%- endmacro %}
 
 {#- Karta odcinka. Kotwica #epN jest taka sama we wszystkich językach. -#}
@@ -19,6 +19,38 @@
   {% set others = ep | otherLangs(lang, site.langs) %}
   {% if others.length %}
   <details class="ep__langs"{% if featured %} open{% endif %}>
+    <summary><span class="ep__langs-h">{{ t.otherLangs }}</span>
+      <span class="ep__langs-list">{% for code in others %}<span lang="{{ i18n[code].htmlLang }}">{{ i18n[code].langName }}</span>{% if not loop.last %} · {% endif %}{% endfor %}</span></summary>
+    <ul>
+      {% for code in others %}
+      <li>
+        <p class="lrow"><span class="lname" lang="{{ i18n[code].htmlLang }}">{{ i18n[code].langName }}</span> <span class="ltitle" lang="{{ i18n[code].htmlLang }}">{{ ep[code].title }}</span></p>
+        <div class="lbtns">{{ listen(ep[code], shows[code], t, i18n[code].langName, true) }}</div>
+      </li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% endif %}
+</article>
+{%- endmacro %}
+
+
+{#- Karta bajki ze strony świątecznej: ten sam układ co karty 2-5, etykieta zamiast numeru, tytuł jako h2.
+    Wersje w innych językach tylko tam, gdzie jest strona świąteczna w tym języku. -#}
+{% macro special(ep, lang, t, xp, i18n, shows, site, root, pages) -%}
+{% set v = ep[lang] %}
+<article class="ep ep--special" id="{{ ep.id }}" aria-labelledby="{{ ep.id }}-title">
+  <img class="ep__cover" src="{{ v.cover | rel(root) }}" width="720" height="720" alt="{{ t.coverAlt }}: {{ v.title }}" fetchpriority="high" decoding="async">
+  <div class="ep__head">
+    <p class="ep__meta"><span class="pill">{{ xp.pill }}</span><span class="ep__time">{{ v.duration | minutes }} {{ t.minutes }}</span></p>
+    <h2 class="ep__title" id="{{ ep.id }}-title">{{ v.title }}</h2>
+  </div>
+  <p class="ep__summary">{{ v.summary }}</p>
+  {% if v.credits %}<p class="ep__credits">{{ v.credits }}</p>{% endif %}
+  <div class="ep__listen"><p class="ep__listen-label">{{ t.listenOn }}</p>{{ listen(v, shows[lang], t, "", false) }}</div>
+  {% set others = ep | otherLangs(lang, site.langs) | withPage(pages) %}
+  {% if others.length %}
+  <details class="ep__langs" open>
     <summary><span class="ep__langs-h">{{ t.otherLangs }}</span>
       <span class="ep__langs-list">{% for code in others %}<span lang="{{ i18n[code].htmlLang }}">{{ i18n[code].langName }}</span>{% if not loop.last %} · {% endif %}{% endfor %}</span></summary>
     <ul>

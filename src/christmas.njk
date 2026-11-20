@@ -1,0 +1,76 @@
+---
+pagination:
+  data: christmas.pages
+  size: 1
+  alias: lang
+permalink: "/{{ lang }}/{{ christmas.pages[lang].slug }}/index.html"
+eleventyExcludeFromCollections: true
+---
+{#- Strona świąteczna w danym języku (stały adres, cały rok). Dane i teksty: src/_data/christmas.yaml. -#}
+{%- from "links.njk" import special -%}
+{%- set t = i18n[lang] -%}
+{%- set xp = christmas.pages[lang] -%}
+{%- set show = shows[lang] -%}
+{%- set root = "../../" -%}
+{%- set langRoot = "../" -%}
+{%- set pageUrl = site.url + "/" + lang + "/" + xp.slug + "/" -%}
+<!doctype html>
+<html lang="{{ t.htmlLang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ xp.metaTitle }}</title>
+<meta name="description" content="{{ xp.metaDescription }}">
+{% if site.noindex %}<meta name="robots" content="noindex">
+{% endif %}<link rel="canonical" href="{{ pageUrl }}">
+{% for code in site.langs %}{% if christmas.pages[code] %}<link rel="alternate" hreflang="{{ i18n[code].htmlLang }}" href="{{ site.url }}/{{ code }}/{{ christmas.pages[code].slug }}/">
+{% endif %}{% endfor %}<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ xp.metaTitle.split(' | ')[0] }}">
+<meta property="og:description" content="{{ xp.metaDescription }}">
+<meta property="og:url" content="{{ pageUrl }}">
+<meta property="og:image" content="{{ site.url }}{{ xp.image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ xp.imageAlt }}">
+<meta property="og:locale" content="{{ t.ogLocale }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2E3F58">
+<link rel="icon" href="{{ '/img/favicon-64.png' | rel(root) }}" type="image/png">
+<link rel="apple-touch-icon" href="{{ '/img/apple-touch-icon.png' | rel(root) }}">
+<link rel="preload" href="{{ '/assets/fonts/baloo-2-latin-800-normal.woff2' | rel(root) }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/fonts.css' | rel(root) }}">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | rel(root) }}">
+<script type="application/ld+json">
+{{ lang | jsonldSeasonal({ site: site, i18n: i18n, shows: shows, christmas: christmas }) | safe }}
+</script>
+</head>
+<body>
+{%- set brandHref = langRoot + site.indexFile -%}{%- set skipHref = "#odcinki" -%}{%- set seasonal = true -%}
+{% include "top.njk" %}
+
+<main id="top">
+  <section class="xmas">
+    <div class="wrap">
+      <p class="eyebrow">{{ xp.eyebrow }}</p>
+      <h1 class="xmas__h">{{ xp.heading }}</h1>
+      <div class="xmas__list" id="odcinki">
+        {% for ep in christmas.episodes %}{% if ep[lang] %}
+        {{ special(ep, lang, t, xp, i18n, shows, site, root, christmas.pages) }}
+        {% endif %}{% endfor %}
+      </div>
+      <div class="xmas__more">
+        <p class="xmas__first">{{ xp.firstTimeQ }} <a href="{{ langRoot }}{{ site.indexFile }}#ep1">{{ xp.firstTimeLink }}</a></p>
+        <p class="series-links"><span class="series-links__label">{{ t.seriesOn }}:</span>
+          <a href="https://www.youtube.com/{{ show.youtube }}" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://open.spotify.com/show/{{ show.spotify }}" target="_blank" rel="noopener">Spotify</a>
+          <a href="https://podcasts.apple.com/us/podcast/id{{ show.apple }}" target="_blank" rel="noopener">Apple Podcasts</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% include "foot.njk" %}
+</body>
+</html>

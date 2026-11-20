@@ -7,7 +7,9 @@
     var top = document.querySelector(".top");
     var line = top ? top.getBoundingClientRect().bottom : 0;
     var best = null, bestDist = Infinity;
-    document.querySelectorAll("article.ep[id]").forEach(function (el) {
+    // Tylko karty odcinków serii (#ep1...#ep5). Karta bajki świątecznej nie daje kotwicy w innym języku.
+    document.querySelectorAll("article.ep[id^='ep']").forEach(function (el) {
+      if (!/^ep\d+$/.test(el.id)) return;
       var r = el.getBoundingClientRect();
       if (r.bottom <= line + 48 || r.top >= window.innerHeight) return;
       var dist = Math.abs(r.top - line);
