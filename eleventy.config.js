@@ -221,7 +221,8 @@ function jsonldSeasonal(lang, { site, i18n, shows, christmas }) {
       sameAs: [
         "https://www.youtube.com/watch?v=" + v.youtube,
         "https://open.spotify.com/episode/" + v.spotify,
-        "https://podcasts.apple.com/us/podcast/id" + show.apple + (v.apple ? "?i=" + v.apple : ""),
+        // Apple tylko z numerem odcinka: sameAs ma wskazywać ten sam odcinek, nie cały pokaz (uwaga Codex 20.11).
+        ...(v.apple ? ["https://podcasts.apple.com/us/podcast/id" + show.apple + "?i=" + v.apple] : []),
       ],
     });
     const others = site.langs.filter((c) => c !== lang && ep[c] && christmas.pages[c]);

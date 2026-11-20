@@ -13,7 +13,8 @@
       var r = el.getBoundingClientRect();
       if (r.bottom <= line + 48 || r.top >= window.innerHeight) return;
       var dist = Math.abs(r.top - line);
-      if (dist < bestDist) { best = el; bestDist = dist; }
+      // Dwie karty w jednym rzędzie mają tę samą odległość: wtedy wygrywa karta z adresu (#ep3).
+      if (dist < bestDist || (dist === bestDist && location.hash === "#" + el.id)) { best = el; bestDist = dist; }
     });
     return best;
   }
