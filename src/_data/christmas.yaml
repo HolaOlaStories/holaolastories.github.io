@@ -14,6 +14,7 @@
 # episodes: bajki na stronie świątecznej, pola wersji językowej jak w episodes.yaml, plus:
 #   id       kotwica karty (/pl/swieta/#mikolaj)
 #   apple    numer odcinka w Apple Podcasts; pusty = przycisk Apple prowadzi do całego pokazu
+#            (tak samo youtube i spotify: pusty = kanał i pokaz w tym języku; tylko na podgląd przed premierą)
 #   credits  podpis pod opisem
 
 pages:
@@ -36,6 +37,26 @@ pages:
     firstTimeLink: "Zacznij od odcinka 1 →"
     image: "/img/og-swieta26-pl.jpg"
     imageAlt: "Pingwinek Kajo i renifer Radek na grzbiecie wieloryba Huga, w tle pingwiny przy saniach Mikołaja"
+  # Teksty EN: claude/HANDOFF_Strona_WWW_Swieta_EN_2026-11-26.md. Pasek od premiery EN 27.11.
+  en:
+    slug: "christmas"
+    aliases: []
+    bannerFrom: "2026-11-27"
+    bannerUntil: "2027-01-06"
+    banner: "For Christmas: Kayo and the Missing Santa. Listen"
+    bannerEyebrow: "For Christmas"
+    bannerTitle: "Kayo and the Missing Santa"
+    bannerCta: "Listen →"
+    bannerImages: ["/img/swieta26-pasek-a.webp", "/img/swieta26-pasek-b.webp"]
+    metaTitle: "Kayo and the Missing Santa: a Christmas audio story | HolaOla Tales"
+    metaDescription: "A Christmas audio story for kids. A snowstorm, Radek the reindeer and a missing Santa. About 14 minutes. The same story is also in Polish."
+    eyebrow: "For Christmas"
+    heading: "A Christmas story with Kayo the Penguin"
+    pill: "Christmas"
+    firstTimeQ: "New to Kayo?"
+    firstTimeLink: "Start with Episode 1 →"
+    image: "/img/og-swieta26-en.jpg"
+    imageAlt: "Kayo the Penguin and Radek the reindeer on the back of Hugo the whale, with penguins by Santa's sleigh behind them"
 
 episodes:
   - id: "mikolaj"
@@ -49,3 +70,14 @@ episodes:
       published: "2026-11-20"
       cover: "/img/covers/swieta26_pl.webp"
       credits: "Tekst: Jakub Leśniak. Czyta: Ola Stalmach."
+    # Premiera EN 27.11.2026, 15:00. apple: numer odcinka z ?i=, gdy Apple pokaże odcinek (do tego czasu pokaz EN).
+    en:
+      title: "Kayo and the Missing Santa"
+      summary: "On the night before Christmas Eve a snowstorm rolls in over Kayo's icy island. In the morning an unusual reindeer called Radek comes to the penguins with worrying news: Santa is missing, and without him reindeer can't fly. Kayo and Radek set off on the back of Hugo the whale to find him."
+      duration: "14:19"
+      youtube: "OC-OY7Xy3YE"
+      spotify: "0dNgcjuzIdq30HFtvQUS29"
+      apple: ""
+      published: "2026-11-27"
+      cover: "/img/covers/swieta26_en.webp"
+      credits: "Written by Jakub Leśniak. Narrated with a clone of Ola Stalmach's voice."

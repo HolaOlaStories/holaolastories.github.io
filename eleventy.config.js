@@ -219,12 +219,14 @@ function jsonldSeasonal(lang, { site, i18n, shows, christmas }) {
       isAccessibleForFree: true,
       partOfSeries: { "@type": "PodcastSeries", "@id": u + "/" + lang + "/#series", name: t.series, url: u + "/" + lang + "/" },
       sameAs: [
-        "https://www.youtube.com/watch?v=" + v.youtube,
-        "https://open.spotify.com/episode/" + v.spotify,
+        // Tylko adresy samego odcinka. Przed premierą (puste pola) nic nie trafia do sameAs.
+        ...(v.youtube ? ["https://www.youtube.com/watch?v=" + v.youtube] : []),
+        ...(v.spotify ? ["https://open.spotify.com/episode/" + v.spotify] : []),
         // Apple tylko z numerem odcinka: sameAs ma wskazywać ten sam odcinek, nie cały pokaz (uwaga Codex 20.11).
         ...(v.apple ? ["https://podcasts.apple.com/us/podcast/id" + show.apple + "?i=" + v.apple] : []),
       ],
     });
+    if (!node.sameAs.length) delete node.sameAs;
     const others = site.langs.filter((c) => c !== lang && ep[c] && christmas.pages[c]);
     if (lang === ORIGINAL) {
       if (others.length) node.workTranslation = others.map((c) => epRef(ep, c));

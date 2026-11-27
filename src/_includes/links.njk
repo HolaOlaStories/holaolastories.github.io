@@ -1,7 +1,8 @@
-{#- Przyciski do serwisów dla jednej wersji językowej odcinka. -#}
+{#- Przyciski do serwisów dla jednej wersji językowej odcinka.
+    Bez numeru odcinka (przed premierą) przycisk prowadzi do kanału albo pokazu w tym języku. -#}
 {% macro listen(v, show, t, langName, small) -%}
-<a class="pbtn{% if small %} pbtn--sm{% endif %}" href="https://www.youtube.com/watch?v={{ v.youtube }}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: YouTube, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-video"></use></svg>YouTube</a>
-<a class="pbtn{% if small %} pbtn--sm{% endif %}" href="https://open.spotify.com/episode/{{ v.spotify }}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: Spotify, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-audio"></use></svg>Spotify</a>
+<a class="pbtn{% if small %} pbtn--sm{% endif %}" href="{% if v.youtube %}https://www.youtube.com/watch?v={{ v.youtube }}{% else %}https://www.youtube.com/{{ show.youtube }}{% endif %}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: YouTube, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-video"></use></svg>YouTube</a>
+<a class="pbtn{% if small %} pbtn--sm{% endif %}" href="{% if v.spotify %}https://open.spotify.com/episode/{{ v.spotify }}{% else %}https://open.spotify.com/show/{{ show.spotify }}{% endif %}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: Spotify, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-audio"></use></svg>Spotify</a>
 <a class="pbtn{% if small %} pbtn--sm{% endif %}" href="https://podcasts.apple.com/us/podcast/id{{ show.apple }}{% if v.apple %}?i={{ v.apple }}{% endif %}" target="_blank" rel="noopener" aria-label="{{ v.title }}{% if langName %} ({{ langName }}){% endif %}: Apple Podcasts, {{ t.newTab }}"><svg aria-hidden="true" focusable="false"><use href="#i-audio"></use></svg>{% if small %}Apple{% else %}Apple Podcasts{% endif %}</a>
 {%- endmacro %}
 
